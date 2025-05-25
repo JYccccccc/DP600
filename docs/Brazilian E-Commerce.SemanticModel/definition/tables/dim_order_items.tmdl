@@ -1,0 +1,115 @@
+table dim_order_items
+	lineageTag: 0e921287-9104-459a-aad4-e88329ebcfd2
+
+	measure 'Total Sales' = SUM(dim_order_items[price])
+		lineageTag: 4657376a-a5af-4cb7-a4f1-26f0e8a14259
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Freight' = SUM(dim_order_items[freight_value])
+		isHidden
+		lineageTag: af90ab57-8c75-402e-b00d-c12036aaf858
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Order Value' = [Total Sales] / DISTINCTCOUNT(dim_order_items[order_id])
+		lineageTag: ed70581a-d750-48f2-b558-27f87eda474c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_id
+		dataType: string
+		lineageTag: 4b6eac81-35df-4bc6-a272-be791d66da2d
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 43ffbcb4-85c6-4c20-bedb-ea440ad9c1b0
+		summarizeBy: none
+		sourceColumn: order_item_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column product_id
+		dataType: string
+		lineageTag: 888e3cba-a813-44e7-96b6-11696c8a3afd
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		isHidden
+		lineageTag: 1d976c16-91c5-4cf5-992b-b40238cecb1a
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_limit_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9a8c8dd5-48ed-410b-96a5-ece76737c28b
+		summarizeBy: none
+		sourceColumn: shipping_limit_date
+
+		variation Variation
+			isDefault
+			relationship: a8befa1a-cbdf-407b-8aa1-1c9d308b2c94
+			defaultHierarchy: LocalDateTable_4858d85a-9c01-40a3-80ee-acfac1f7a2e7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: 6bba5e9d-8ac1-48ea-8f5b-a3a05125d9a8
+		summarizeBy: none
+		sourceColumn: price
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: double
+		isHidden
+		lineageTag: de58f89d-7f07-4c5c-90b6-8cf4e5316615
+		summarizeBy: none
+		sourceColumn: freight_value
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_order_items = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Code\exeserce\DataViz\Brazilian E-Commerce\olist_order_items_dataset.csv"),[Delimiter=",", Columns=7, Encoding=936, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", type text}, {"order_item_id", Int64.Type}, {"product_id", type text}, {"seller_id", type text}, {"shipping_limit_date", type datetime}, {"price", type number}, {"freight_value", type number}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"shipping_limit_date", Order.Descending}}),
+				    #"Removed Top Rows" = Table.Skip(#"Sorted Rows",103)
+				in
+				    #"Removed Top Rows"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

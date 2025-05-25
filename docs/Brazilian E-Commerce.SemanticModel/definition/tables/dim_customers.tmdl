@@ -1,0 +1,78 @@
+table dim_customers
+	isHidden
+	lineageTag: 4946d88f-da2b-4b50-9004-5520cb1732a1
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: 72d94b78-91db-480c-9890-be3be7698686
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_unique_id
+		dataType: string
+		isHidden
+		lineageTag: da267f80-4820-4985-ac30-3b83bd789586
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_zip_code_prefix
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7f49e84d-9cfb-4eac-9bd0-f0e702aeac1f
+		summarizeBy: sum
+		sourceColumn: customer_zip_code_prefix
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		isHidden
+		lineageTag: e8916613-80fa-4f37-b702-703b12c57263
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		isHidden
+		lineageTag: dac32b6e-b4f1-4ac2-968f-eb6a5964cae1
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Code\exeserce\DataViz\Brazilian E-Commerce\olist_customers_dataset.csv"),[Delimiter=",", Columns=5, Encoding=936, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"customer_id", type text}, {"customer_unique_id", type text}, {"customer_zip_code_prefix", Int64.Type}, {"customer_city", type text}, {"customer_state", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

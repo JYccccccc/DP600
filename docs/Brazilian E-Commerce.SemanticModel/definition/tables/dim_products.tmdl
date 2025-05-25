@@ -1,0 +1,126 @@
+table dim_products
+	isHidden
+	lineageTag: 33d37b62-61e4-46f0-a904-52825ad006e5
+
+	column product_id
+		dataType: string
+		isHidden
+		lineageTag: 9a3f86cf-3782-4e9a-a8f6-a7c0a5592f5b
+		summarizeBy: none
+		sourceColumn: product_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category_name
+		dataType: string
+		isHidden
+		lineageTag: a6f081ce-693e-412a-872c-81afb34c1216
+		summarizeBy: none
+		sourceColumn: product_category_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name_lenght
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1b1938ca-51e8-46e4-af82-635de6e59277
+		summarizeBy: sum
+		sourceColumn: product_name_lenght
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_description_lenght
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 71df7016-4848-47c5-839c-4e658313a9df
+		summarizeBy: sum
+		sourceColumn: product_description_lenght
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_photos_qty
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bab123ee-9400-4a57-ba56-d42f4a660c6a
+		summarizeBy: sum
+		sourceColumn: product_photos_qty
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_weight_g
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2b627aff-6b84-4709-af64-9a39b3473bb2
+		summarizeBy: sum
+		sourceColumn: product_weight_g
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_length_cm
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ef9c6f75-ad76-4d36-bb19-8868796057ac
+		summarizeBy: sum
+		sourceColumn: product_length_cm
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_height_cm
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 84c23855-f823-4cb7-a82f-4b08b5f548c1
+		summarizeBy: sum
+		sourceColumn: product_height_cm
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_width_cm
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 25ca3680-0ee9-4e61-a965-96da74f8c9d5
+		summarizeBy: sum
+		sourceColumn: product_width_cm
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_products = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Code\exeserce\DataViz\Brazilian E-Commerce\olist_products_dataset.csv"),[Delimiter=",", Columns=9, Encoding=936, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", type text}, {"product_category_name", type text}, {"product_name_lenght", Int64.Type}, {"product_description_lenght", Int64.Type}, {"product_photos_qty", Int64.Type}, {"product_weight_g", Int64.Type}, {"product_length_cm", Int64.Type}, {"product_height_cm", Int64.Type}, {"product_width_cm", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

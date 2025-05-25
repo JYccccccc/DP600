@@ -1,0 +1,67 @@
+table dim_order_payments
+	lineageTag: 9c31f69d-5b26-42e2-a8ab-7c9c83e585a3
+
+	column order_id
+		dataType: string
+		lineageTag: 563cbddc-2deb-4d44-9e80-8d16e038575c
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_sequential
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 48cf8dbd-bbeb-42df-9cd8-40243786d2b9
+		summarizeBy: none
+		sourceColumn: payment_sequential
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column payment_type
+		dataType: string
+		lineageTag: 5434c29d-b687-47bb-983c-a4922c4057af
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_installments
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9d821844-6ea0-4e03-800c-65f78cf3043a
+		summarizeBy: none
+		sourceColumn: payment_installments
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column payment_value
+		dataType: double
+		lineageTag: b817401f-68cf-4ed6-be51-8b0264a97c42
+		summarizeBy: none
+		sourceColumn: payment_value
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_order_payments = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Code\exeserce\DataViz\Brazilian E-Commerce\olist_order_payments_dataset.csv"),[Delimiter=",", Columns=5, Encoding=936, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", type text}, {"payment_sequential", Int64.Type}, {"payment_type", type text}, {"payment_installments", Int64.Type}, {"payment_value", type number}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

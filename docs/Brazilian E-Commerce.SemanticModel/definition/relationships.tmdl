@@ -1,0 +1,66 @@
+relationship a8befa1a-cbdf-407b-8aa1-1c9d308b2c94
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_order_items.shipping_limit_date
+	toColumn: LocalDateTable_4858d85a-9c01-40a3-80ee-acfac1f7a2e7.Date
+
+relationship 551e86c7-1ad0-46cb-b2fa-428aac5f173f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_order_reviews.review_creation_date
+	toColumn: LocalDateTable_8a2839e5-db97-4a1d-82f0-eb13f651a196.Date
+
+relationship 4b3c6372-64c2-491b-aecd-6ad2de6bd017
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_order_reviews.review_answer_timestamp
+	toColumn: LocalDateTable_ac4a9481-7f26-4153-ba5c-f8faa2725e18.Date
+
+relationship 015264da-698f-4c06-8b7e-448d681cbdc7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_orders.order_purchase_timestamp
+	toColumn: LocalDateTable_9e623c92-5538-441b-84df-c13917036bfc.Date
+
+relationship 3b9b5b64-4ad8-4e69-af70-1b5f24565cae
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_orders.order_approved_at
+	toColumn: LocalDateTable_1e85aeb0-53f0-4c65-a961-ccdc3b39d36c.Date
+
+relationship ab84f276-1955-4519-b228-e9a1cbe28e51
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_orders.order_delivered_carrier_date
+	toColumn: LocalDateTable_8f6c1f58-5d40-4574-8dad-d9d3c73de82b.Date
+
+relationship fa47c13f-b404-4f45-959a-bf22ed61a0a4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_orders.order_delivered_customer_date
+	toColumn: LocalDateTable_3023e0cc-21f8-4395-b683-216a2d9dd2da.Date
+
+relationship 07464963-0d3b-4940-b873-d3b510b39837
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_orders.order_estimated_delivery_date
+	toColumn: LocalDateTable_292608dc-e311-443b-a940-a9b5574fa7ea.Date
+
+relationship AutoDetected_7f914249-125c-4db4-b6ca-716147e1e969
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fact_orders.customer_id
+	toColumn: dim_customers.customer_id
+
+relationship AutoDetected_e94fbea1-c137-4fcf-b3d0-998724de2c02
+	fromColumn: dim_order_items.order_id
+	toColumn: fact_orders.order_id
+
+relationship AutoDetected_f5a3dc22-d23c-4718-843e-76e508c76bda
+	fromColumn: dim_order_payments.order_id
+	toColumn: fact_orders.order_id
+
+relationship AutoDetected_8135a86c-59b6-4ef2-9fb1-38a4354b57ac
+	fromColumn: dim_order_reviews.order_id
+	toColumn: fact_orders.order_id
+
+relationship AutoDetected_f900e124-d93b-44f6-a647-71a39451ee98
+	fromColumn: dim_order_items.product_id
+	toColumn: dim_products.product_id
+
+relationship d009b201-778f-4642-2a07-fd3b73e42e94
+	fromColumn: dim_products.product_category_name
+	toColumn: product_category_name_translation.product_category_name
+

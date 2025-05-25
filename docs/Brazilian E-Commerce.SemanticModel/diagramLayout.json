@@ -1,0 +1,107 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1817.7965304052232,
+            "y": 20.410257580654815
+          },
+          "nodeIndex": "product_category_name_translation",
+          "nodeLineageTag": "54051d41-298a-446c-b39a-270cf2c82314",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 848.11590579998585,
+            "y": 995.940939306884
+          },
+          "nodeIndex": "dim_customers",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1431.9583790721142,
+            "y": 437.79747334671077
+          },
+          "nodeIndex": "dim_order_items",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 54.803419193551576
+          },
+          "nodeIndex": "dim_order_payments",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 79.331002609853641,
+            "y": 449.89582229377868
+          },
+          "nodeIndex": "dim_order_reviews",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 849.954882986895,
+            "y": 437.89582229377885
+          },
+          "nodeIndex": "fact_orders",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1427.9154311330258,
+            "y": 24.67939847270819
+          },
+          "nodeIndex": "dim_products",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 56.4473930053778,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
