@@ -31,7 +31,7 @@ Contient les notebooks utilisés pour :
 | `Brazilian E-Commerce.pbip/`                    | 📁 Structure du projet Power BI compatible Git (modèle sémantique + layout + visuels) |
 | `Brazilian E-Commerce.SemanticModel/`           | 🔧 Définition du modèle sémantique Power BI (tables, relations, mesures) |
 | `Brazilian E-Commerce.Report/`                  | 🎨 Configuration du rapport Power BI (fichiers JSON, ressources) |
-| `Intégration des Données Olist avec Microsoft Fabric.pdf` | 📘 [Rapport PDF : Intégration des Données Olist avec Microsoft Fabric](docs/Intégration des Données Olist avec Microsoft Fabric.pdf) |
+| `Intégration des Données Olist avec Microsoft Fabric.pdf` | 📘 [Rapport PDF : Intégration des Données Olist avec Microsoft Fabric](docs/Int%C3%A9egration%20des%20Donn%C3%A9es%20Olist%20avec%20Microsoft%20Fabric.pdf) |
 | `MCD.png`                                       | 🧩 Modèle conceptuel des données (modélisation en étoile) |
 
 ---
