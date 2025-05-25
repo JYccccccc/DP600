@@ -6,9 +6,9 @@ Ce projet présente une analyse complète du célèbre dataset **Olist** à l'ai
 ---
 
 ## 📁 Structure du projet
-├── Files # Données sources (fichiers CSV du dataset Olist)
-├── docs # Documentation, rapports, schémas et rapport Power BI
-├── notebooks # Scripts de traitement et de modélisation (Microsoft Fabric Notebooks)
+├── Files # Données sources (fichiers CSV du dataset Olist)  
+├── docs # Documentation, rapports, schémas et rapport Power BI  
+├── notebooks # Scripts de traitement et de modélisation (Microsoft Fabric Notebooks)  
 └── README.md # Ce fichier de description du projet
 ---
 
